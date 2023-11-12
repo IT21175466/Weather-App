@@ -83,6 +83,13 @@ class _HomePageState extends State<HomePage> {
                 fontSize: 16,
                 fontWeight: FontWeight.w300,
                 color: Colors.white,
+                shadows: [
+                  Shadow(
+                    color: Colors.black.withOpacity(0.25),
+                    offset: const Offset(0, 4),
+                    blurRadius: 4,
+                  ),
+                ],
               ),
             ),
           ],
