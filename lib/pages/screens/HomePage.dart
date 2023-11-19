@@ -161,9 +161,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
 
-            const SizedBox(
-              height: 30,
-            ),
+            const Spacer(),
 
             //Humidity Wind FeelsLike
             Padding(
@@ -584,7 +582,7 @@ class _HomePageState extends State<HomePage> {
             ),
 
             const SizedBox(
-              height: 20,
+              height: 30,
             ),
           ],
         ),
