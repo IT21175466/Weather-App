@@ -97,9 +97,10 @@ class _HomePageState extends State<HomePage> {
               //Updated Date and Time
               Text(
                 weather.data != null
-                    ? 'Updated ${weather.data.last_update}'
+                    ? 'Updated as of ' +
+                        DateFormat('d/m/y hh:mma')
+                            .format(weather.data.last_update ?? DateTime.now())
                     : '-',
-                //'Updated 6/7/2023 4:55 PM',
                 style: GoogleFonts.roboto(
                   fontSize: 16,
                   fontWeight: FontWeight.w300,
@@ -128,7 +129,6 @@ class _HomePageState extends State<HomePage> {
               //Condition
               Text(
                 weather.data != null ? '${weather.data.condition}' : '_',
-                //'Cloud',
                 style: GoogleFonts.roboto(
                   fontSize: 40,
                   fontWeight: FontWeight.w700,
@@ -150,7 +150,6 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   Text(
                     weather.data != null ? '${weather.data.temp}' : '_',
-                    //'24',
                     style: GoogleFonts.roboto(
                       height: 0.8,
                       fontSize: 86,
@@ -303,7 +302,6 @@ class _HomePageState extends State<HomePage> {
                           weather.data != null
                               ? '${weather.data.feelsLike}°'
                               : '_',
-                          //'22°',
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w500,

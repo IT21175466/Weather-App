@@ -34,7 +34,7 @@ class Weather {
       wind: json['current']['wind_kph'],
       humidity: json['current']['humidity'],
       feelsLike: json['current']['feelslike_c'],
-      last_update: json['current']['last_updated'],
+      last_update: DateTime.parse(json['current']['last_updated']),
       forecast: forecastData != null
           ? forecastData
               .map((reviewData) =>
