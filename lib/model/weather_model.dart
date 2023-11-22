@@ -6,11 +6,6 @@ class Weather {
   var wind;
   var humidity;
   var feelsLike;
-  // var wind_dir;
-  // var gust;
-  // var uv;
-  // var preassure;
-  // var princip;
   var last_update;
 
   Weather({
@@ -21,11 +16,6 @@ class Weather {
     required this.wind,
     required this.humidity,
     required this.feelsLike,
-    // required this.wind_dir,
-    // required this.gust,
-    // required this.uv,
-    // required this.preassure,
-    // required this.princip,
     required this.last_update,
   });
 
@@ -38,10 +28,5 @@ class Weather {
     humidity = json['current']['humidity'];
     feelsLike = json['current']['feelslike_c'];
     last_update = json['current']['last_updated'];
-    // wind_dir = json['current']['wind_dir'];
-    // gust = json['current']['gust_kph'];
-    // uv = json['current']['uv'];
-    // preassure = json['current']['pressure_mb'];
-    // princip = json['current']['precip_mm'];
   }
 }
