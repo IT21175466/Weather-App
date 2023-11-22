@@ -14,7 +14,9 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     final provider = Provider.of<WeatherProvider>(context, listen: false);
-    provider.info('Colombo');
+
+    provider.info('London');
+
     super.initState();
   }
 
@@ -339,7 +341,9 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'Wed 16',
+                          weather.data != null
+                              ? '${weather.data.forecast[0].f_date}'
+                              : '_',
                           style: GoogleFonts.roboto(
                             fontSize: 14,
                             fontWeight: FontWeight.w400,
@@ -403,213 +407,213 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ],
                     ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Thu 17',
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 35,
-                          height: 35,
-                          child:
-                              Image.asset('lib/assets/images/cloudy_moon.png'),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          '25º',
-                          style: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '1-5',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'km/h',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Fri 18',
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 35,
-                          height: 35,
-                          child:
-                              Image.asset('lib/assets/images/cloudy_moon.png'),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          '23º',
-                          style: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '5-10',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'km/h',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          'Fri 18',
-                          style: GoogleFonts.roboto(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Spacer(),
-                        SizedBox(
-                          width: 35,
-                          height: 35,
-                          child:
-                              Image.asset('lib/assets/images/cloudy_rain.png'),
-                        ),
-                        const SizedBox(
-                          height: 2,
-                        ),
-                        Text(
-                          '25º',
-                          style: GoogleFonts.roboto(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          '1-5',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          'km/h',
-                          style: GoogleFonts.roboto(
-                            fontSize: 10,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black.withOpacity(0.25),
-                                offset: const Offset(0, 4),
-                                blurRadius: 4,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
+                    // const Spacer(),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       weather.data != null ? '${weather.data.f_date}' : '_',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 14,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     const Spacer(),
+                    //     SizedBox(
+                    //       width: 35,
+                    //       height: 35,
+                    //       child:
+                    //           Image.asset('lib/assets/images/cloudy_moon.png'),
+                    //     ),
+                    //     const SizedBox(
+                    //       height: 2,
+                    //     ),
+                    //     Text(
+                    //       '25º',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       '1-5',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       'km/h',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const Spacer(),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       'Fri 18',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 14,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     const Spacer(),
+                    //     SizedBox(
+                    //       width: 35,
+                    //       height: 35,
+                    //       child:
+                    //           Image.asset('lib/assets/images/cloudy_moon.png'),
+                    //     ),
+                    //     const SizedBox(
+                    //       height: 2,
+                    //     ),
+                    //     Text(
+                    //       '23º',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       '5-10',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       'km/h',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // const Spacer(),
+                    // Column(
+                    //   crossAxisAlignment: CrossAxisAlignment.center,
+                    //   children: [
+                    //     Text(
+                    //       'Fri 18',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 14,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     const Spacer(),
+                    //     SizedBox(
+                    //       width: 35,
+                    //       height: 35,
+                    //       child:
+                    //           Image.asset('lib/assets/images/cloudy_rain.png'),
+                    //     ),
+                    //     const SizedBox(
+                    //       height: 2,
+                    //     ),
+                    //     Text(
+                    //       '25º',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 16,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       '1-5',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //     Text(
+                    //       'km/h',
+                    //       style: GoogleFonts.roboto(
+                    //         fontSize: 10,
+                    //         fontWeight: FontWeight.w400,
+                    //         color: Colors.white,
+                    //         shadows: [
+                    //           Shadow(
+                    //             color: Colors.black.withOpacity(0.25),
+                    //             offset: const Offset(0, 4),
+                    //             blurRadius: 4,
+                    //           ),
+                    //         ],
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                   ],
                 ),
               ),
