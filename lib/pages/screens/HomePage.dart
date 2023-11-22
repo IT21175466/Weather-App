@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     final provider = Provider.of<WeatherProvider>(context, listen: false);
 
-    provider.info('London');
+    provider.info('Colombo');
 
     super.initState();
   }
@@ -97,8 +97,8 @@ class _HomePageState extends State<HomePage> {
               //Updated Date and Time
               Text(
                 weather.data != null
-                    ? 'Updated as of ' +
-                        DateFormat('d/m/y hh:mma')
+                    ? 'Updated ' +
+                        DateFormat('dd/MM/yyyy hh:mma')
                             .format(weather.data.last_update ?? DateTime.now())
                     : '-',
                 style: GoogleFonts.roboto(
