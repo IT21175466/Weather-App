@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/provider/country_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -57,36 +56,18 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       width: 5,
                     ),
-                    Consumer<CountryProvider>(
-                      builder: (context, country, child) =>
-                          DropdownButton<String>(
-                        iconEnabledColor: Colors.transparent,
-                        iconDisabledColor: Colors.transparent,
-                        dropdownColor: Colors.blue,
-                        value: country.selectedCountry,
-                        items: country.countries
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(
-                              value,
-                              style: GoogleFonts.roboto(
-                                fontSize: 18,
-                                color: Colors.white,
-                                shadows: [
-                                  Shadow(
-                                    color: Colors.black.withOpacity(0.25),
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 4,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          );
-                        }).toList(),
-                        onChanged: (String? newValue) {
-                          country.setCountry(newValue);
-                        },
+                    Text(
+                      weather.data != null ? '${weather.data.name}' : '-',
+                      style: GoogleFonts.roboto(
+                        fontSize: 18,
+                        color: Colors.white,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black.withOpacity(0.25),
+                            offset: const Offset(0, 4),
+                            blurRadius: 4,
+                          ),
+                        ],
                       ),
                     ),
                     const Spacer(),
