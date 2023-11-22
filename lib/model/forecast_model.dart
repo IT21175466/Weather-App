@@ -11,10 +11,12 @@ class Forecast {
     required this.f_wind,
   });
 
-  Forecast.fromJson(Map<String, dynamic> json) {
-    f_date = json['day']['date'];
-    f_icon = json['day']['condition']['icon'];
-    f_temp = json['day']['avgtemp_c'];
-    f_wind = json['day']['maxwind_kph'];
+  factory Forecast.fromJson(Map<String, dynamic> json) {
+    return Forecast(
+      f_date: DateTime.parse(json['date']),
+      f_icon: json['day']['condition']['icon'],
+      f_temp: json['day']['avgtemp_c'],
+      f_wind: json['day']['maxwind_kph'].toInt(),
+    );
   }
 }

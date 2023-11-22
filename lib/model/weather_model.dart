@@ -9,7 +9,7 @@ class Weather {
   var humidity;
   var feelsLike;
   var last_update;
-  late List<Forecast> forecast;
+  final List<Forecast> forecast;
 
   Weather({
     required this.name,
@@ -23,22 +23,24 @@ class Weather {
     required this.forecast,
   });
 
-  Weather.fromJson(Map<String, dynamic> json) {
-    name = json['location']['name'];
-    icon = json['current']['condition']['icon'];
-    condition = json['current']['condition']['text'];
-    temp = json['current']['temp_c'].toInt();
-    wind = json['current']['wind_kph'];
-    humidity = json['current']['humidity'];
-    feelsLike = json['current']['feelslike_c'];
-    last_update = json['current']['last_updated'];
-    if (json['forecast']['forecastday'] != null) {
-      forecast = <Forecast>[];
-      (json['forecast']['forecastday'] as List).forEach((element) {
-        forecast.add(Forecast.fromJson(element));
-        print(element);
-      });
-    }
-    //forecast = List<Forecast>.from(json['forecast']['forecastday']);
+  factory Weather.fromJson(Map<String, dynamic> json) {
+    final forecastData = json['forecast']['forecastday'] as List<dynamic>?;
+
+    return Weather(
+      name: json['location']['name'],
+      icon: json['current']['condition']['icon'],
+      condition: json['current']['condition']['text'],
+      temp: json['current']['temp_c'].toInt(),
+      wind: json['current']['wind_kph'],
+      humidity: json['current']['humidity'],
+      feelsLike: json['current']['feelslike_c'],
+      last_update: json['current']['last_updated'],
+      forecast: forecastData != null
+          ? forecastData
+              .map((reviewData) =>
+                  Forecast.fromJson(reviewData as Map<String, dynamic>))
+              .toList()
+          : <Forecast>[],
+    );
   }
 }
