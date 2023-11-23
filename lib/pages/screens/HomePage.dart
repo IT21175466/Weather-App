@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/screens/CitySelectPage.dart';
 import 'package:weather_app/pages/screens/SavedLocations.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
