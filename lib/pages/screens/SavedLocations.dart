@@ -80,6 +80,12 @@ class _SavedLocationsState extends State<SavedLocations> {
                   child: ListView.builder(
                     itemCount: savedLocationProvider.cities.length,
                     itemBuilder: (context, index) {
+                      final provider =
+                          Provider.of<WeatherProvider>(context, listen: false);
+
+                      provider
+                          .info(savedLocationProvider.cities[index].city_name);
+
                       return Container(
                         margin: EdgeInsets.symmetric(vertical: 10),
                         padding:
@@ -114,7 +120,9 @@ class _SavedLocationsState extends State<SavedLocations> {
                                   height: 5,
                                 ),
                                 Text(
-                                  'Clear',
+                                  provider.data != null
+                                      ? '${provider.data.condition}'
+                                      : '_',
                                   style: GoogleFonts.roboto(
                                     fontSize: 16,
                                     color: Colors.white,
@@ -137,7 +145,9 @@ class _SavedLocationsState extends State<SavedLocations> {
                                       width: 5,
                                     ),
                                     Text(
-                                      '56%',
+                                      provider.data != null
+                                          ? '${provider.data.humidity}'
+                                          : '_',
                                       style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -160,7 +170,9 @@ class _SavedLocationsState extends State<SavedLocations> {
                                       width: 5,
                                     ),
                                     Text(
-                                      '4.63km/h',
+                                      provider.data != null
+                                          ? '${provider.data.wind}km/h'
+                                          : '_',
                                       style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -176,10 +188,13 @@ class _SavedLocationsState extends State<SavedLocations> {
                               children: [
                                 Spacer(),
                                 SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Image.asset(
-                                      'lib/assets/images/clear.png'),
+                                  height: 60,
+                                  width: 60,
+                                  child: provider.data != null &&
+                                          provider.data.icon != null
+                                      ? Image.network(
+                                          'https:${provider.data.icon}')
+                                      : const Placeholder(),
                                 ),
                                 SizedBox(
                                   height: 20,
@@ -229,11 +244,6 @@ class _SavedLocationsState extends State<SavedLocations> {
                           ],
                         ),
                       );
-                      // ListTile(
-                      //   tileColor: Colors.amber,
-                      //   title: Text(
-                      //       savedLocationProvider.cities[index].city_name),
-                      // );
                     },
                   ),
                 ),
