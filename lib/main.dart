@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/screens/CitySelectPage.dart';
-import 'package:weather_app/pages/screens/HomePage.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
+import 'package:weather_app/provider/saved_location_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
 
 void main() {
@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => GetCityProvider()),
         ChangeNotifierProvider(create: (context) => WeatherProvider()),
+        ChangeNotifierProvider(create: (context) => SavedLocationProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
