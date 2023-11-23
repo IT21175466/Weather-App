@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:weather_app/pages/screens/SavedLocations.dart';
 import 'package:weather_app/provider/weather_provider.dart';
 
 class HomePage extends StatefulWidget {
@@ -74,9 +75,15 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     const Spacer(),
-                    const Icon(
-                      Icons.menu,
-                      color: Colors.white,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const SavedLocations()));
+                      },
+                      child: const Icon(
+                        Icons.menu,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
