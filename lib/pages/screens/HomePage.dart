@@ -137,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                       width: 70,
                       child: weather.data != null && weather.data.icon != null
                           ? Image.network('https:${weather.data.icon}')
-                          : const Placeholder(), // You can replace Placeholder with any other widget or image to display when the icon is null
+                          : const Placeholder(),
                     ),
 
                     //Condition
@@ -232,7 +232,6 @@ class _HomePageState extends State<HomePage> {
                                 weather.data != null
                                     ? '${weather.data.humidity}%'
                                     : '_',
-                                // '56%',
                                 style: GoogleFonts.roboto(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
