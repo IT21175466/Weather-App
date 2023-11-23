@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/screens/SavedLocations.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
@@ -686,15 +687,21 @@ class _HomePageState extends State<HomePage> {
             : SizedBox(
                 height: screenHeight,
                 width: screenWidth,
-                child: const Center(
+                child: Center(
                   child: Column(
                     children: [
                       Spacer(),
-                      CircularProgressIndicator(),
+                      Lottie.asset('lib/assets/animations/loading.json'),
                       SizedBox(
                         height: 10,
                       ),
-                      Text('Getting Weather....'),
+                      Text(
+                        'Getting Weather....',
+                        style: GoogleFonts.poppins(
+                          fontSize: 20,
+                          fontWeight: FontWeight.w400,
+                        ),
+                      ),
                       Spacer(),
                     ],
                   ),

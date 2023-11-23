@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/screens/AddNewLocation.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
-import 'package:weather_app/widgets/saved_weather_card.dart';
+import 'package:weather_app/provider/weather_provider.dart';
 
 class SavedLocations extends StatefulWidget {
   const SavedLocations({super.key});
@@ -13,6 +13,11 @@ class SavedLocations extends StatefulWidget {
 }
 
 class _SavedLocationsState extends State<SavedLocations> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
