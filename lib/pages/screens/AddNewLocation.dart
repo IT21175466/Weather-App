@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/screens/SavedLocations.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
+import 'package:weather_app/provider/weather_provider.dart';
 
 class AddNewLocation extends StatefulWidget {
   const AddNewLocation({super.key});
@@ -14,13 +15,72 @@ class AddNewLocation extends StatefulWidget {
 class _AddNewLocationState extends State<AddNewLocation> {
   TextEditingController cityController = TextEditingController();
 
+  void validationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              height: 220,
+              width: 260,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(dialogContext).pop();
+                        },
+                        child: Image.asset(
+                          'lib/assets/images/close.png',
+                          width: 40,
+                          height: 40,
+                          color: const Color.fromARGB(255, 35, 60, 135),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    "Please Enter City Name",
+                    style: GoogleFonts.poppins(
+                      fontSize: 12,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final savedLocationProvider =
         Provider.of<SavedLocationProvider>(context, listen: false);
 
-    void addCity() {
-      savedLocationProvider.saveCityName(cityController.text);
+    final weatherProvider =
+        Provider.of<WeatherProvider>(context, listen: false);
+
+    void addLocation() {
+      savedLocationProvider.saveLocation(
+          cityController.text,
+          weatherProvider.data.condition,
+          weatherProvider.data.icon,
+          weatherProvider.data.humidity,
+          weatherProvider.data.wind,
+          weatherProvider.data.temp);
     }
 
     return Scaffold(
@@ -31,12 +91,9 @@ class _AddNewLocationState extends State<AddNewLocation> {
             SizedBox(
               height: AppBar().preferredSize.height,
             ),
-            Spacer(),
+            const Spacer(),
             TextField(
               controller: cityController,
-              // onChanged: (value) {
-              //
-              // },
               decoration: InputDecoration(
                 prefixIcon: const Icon(
                   Icons.location_city,
@@ -53,25 +110,36 @@ class _AddNewLocationState extends State<AddNewLocation> {
                   ),
                 ),
                 labelText: 'Enter city name',
-                labelStyle: TextStyle(
+                labelStyle: const TextStyle(
                   color: Color.fromARGB(112, 3, 20, 108),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             GestureDetector(
               onTap: () {
-                addCity();
-                Navigator.of(context).push(MaterialPageRoute(
+                if (cityController.text.isEmpty) {
+                  validationDialog();
+                } else {
+                  weatherProvider
+                      .info(cityController.text)
+                      .then((dynamic result) {
+                    addLocation();
+                  }).catchError((error) {
+                    print(error);
+                  });
+                }
+
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const SavedLocations()));
               },
               child: Container(
                 height: 55,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
-                  color: Color.fromARGB(255, 130, 157, 237),
+                  color: const Color.fromARGB(255, 130, 157, 237),
                   boxShadow: const [
                     BoxShadow(
                       offset: Offset(0, 4.0),
@@ -93,7 +161,7 @@ class _AddNewLocationState extends State<AddNewLocation> {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
           ],
         ),
       ),

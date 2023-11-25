@@ -111,9 +111,7 @@ class _HomePageState extends State<HomePage> {
                     //Updated Date and Time
                     Text(
                       weather.data != null
-                          ? 'Updated ' +
-                              DateFormat('dd/MM/yyyy hh:mma').format(
-                                  weather.data.last_update ?? DateTime.now())
+                          ? 'Updated ${DateFormat('dd/MM/yyyy hh:mma').format(weather.data.last_update ?? DateTime.now())}'
                           : '-',
                       style: GoogleFonts.roboto(
                         fontSize: 16,
@@ -689,9 +687,9 @@ class _HomePageState extends State<HomePage> {
                 child: Center(
                   child: Column(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       Lottie.asset('lib/assets/animations/loading.json'),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text(
@@ -701,7 +699,7 @@ class _HomePageState extends State<HomePage> {
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                     ],
                   ),
                 ),

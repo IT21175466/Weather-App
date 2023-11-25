@@ -12,6 +12,52 @@ class CitySelection extends StatefulWidget {
 }
 
 class _CitySelectionState extends State<CitySelection> {
+  TextEditingController cityController = TextEditingController();
+
+  void validationDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          content: SingleChildScrollView(
+            child: SizedBox(
+              height: 150,
+              width: 260,
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const Spacer(),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(dialogContext).pop();
+                        },
+                        child: const Icon(Icons.close),
+                      ),
+                    ],
+                  ),
+                  const Spacer(),
+                  Text(
+                    "Please Enter City Name",
+                    style: GoogleFonts.poppins(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const Spacer(),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,8 +71,9 @@ class _CitySelectionState extends State<CitySelection> {
               SizedBox(
                 height: AppBar().preferredSize.height,
               ),
-              Spacer(),
+              const Spacer(),
               TextField(
+                controller: cityController,
                 onChanged: (text) {
                   cityProvider.setEnteredText(text.trim());
                 },
@@ -46,24 +93,28 @@ class _CitySelectionState extends State<CitySelection> {
                     ),
                   ),
                   labelText: 'Enter city name',
-                  labelStyle: TextStyle(
+                  labelStyle: const TextStyle(
                     color: Color.fromARGB(112, 3, 20, 108),
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
+                  if (cityController.text.isEmpty) {
+                    validationDialog();
+                  } else {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const HomePage()));
+                  }
                 },
                 child: Container(
                   height: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: Color.fromARGB(255, 130, 157, 237),
+                    color: const Color.fromARGB(255, 130, 157, 237),
                     boxShadow: const [
                       BoxShadow(
                         offset: Offset(0, 4.0),
@@ -85,7 +136,7 @@ class _CitySelectionState extends State<CitySelection> {
                   ),
                 ),
               ),
-              Spacer(),
+              const Spacer(),
             ],
           ),
         ),

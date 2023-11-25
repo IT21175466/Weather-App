@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/screens/AddNewLocation.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
-import 'package:weather_app/provider/weather_provider.dart';
 
 class SavedLocations extends StatefulWidget {
   const SavedLocations({super.key});
@@ -13,11 +12,6 @@ class SavedLocations extends StatefulWidget {
 }
 
 class _SavedLocationsState extends State<SavedLocations> {
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -41,7 +35,7 @@ class _SavedLocationsState extends State<SavedLocations> {
           ),
         ),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: Consumer<SavedLocationProvider>(
             builder: (BuildContext context,
                     SavedLocationProvider savedLocationProvider,
@@ -71,25 +65,19 @@ class _SavedLocationsState extends State<SavedLocations> {
                   ],
                 ),
 
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
 
                 //Cards
                 Expanded(
                   child: ListView.builder(
-                    itemCount: savedLocationProvider.cities.length,
+                    itemCount: savedLocationProvider.savedLocations.length,
                     itemBuilder: (context, index) {
-                      final provider =
-                          Provider.of<WeatherProvider>(context, listen: false);
-
-                      provider
-                          .info(savedLocationProvider.cities[index].city_name);
-
                       return Container(
-                        margin: EdgeInsets.symmetric(vertical: 10),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 20),
                         height: 160,
                         width: screenWidth,
                         decoration: BoxDecoration(
@@ -102,7 +90,8 @@ class _SavedLocationsState extends State<SavedLocations> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  savedLocationProvider.cities[index].city_name,
+                                  savedLocationProvider
+                                      .savedLocations[index].city_name,
                                   style: GoogleFonts.roboto(
                                     fontSize: 24,
                                     color: Colors.white,
@@ -116,20 +105,19 @@ class _SavedLocationsState extends State<SavedLocations> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 5,
                                 ),
                                 Text(
-                                  provider.data != null
-                                      ? '${provider.data.condition}'
-                                      : '_',
+                                  savedLocationProvider
+                                      .savedLocations[index].condition,
                                   style: GoogleFonts.roboto(
                                     fontSize: 16,
                                     color: Colors.white,
                                     fontWeight: FontWeight.w500,
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -141,13 +129,11 @@ class _SavedLocationsState extends State<SavedLocations> {
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
                                     Text(
-                                      provider.data != null
-                                          ? '${provider.data.humidity}'
-                                          : '_',
+                                      '${savedLocationProvider.savedLocations[index].humidity}%',
                                       style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -166,13 +152,11 @@ class _SavedLocationsState extends State<SavedLocations> {
                                         fontWeight: FontWeight.w300,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
                                     Text(
-                                      provider.data != null
-                                          ? '${provider.data.wind}km/h'
-                                          : '_',
+                                      '${savedLocationProvider.savedLocations[index].wind}km/h',
                                       style: GoogleFonts.roboto(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -183,27 +167,26 @@ class _SavedLocationsState extends State<SavedLocations> {
                                 ),
                               ],
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Column(
                               children: [
-                                Spacer(),
+                                const Spacer(),
                                 SizedBox(
                                   height: 60,
                                   width: 60,
-                                  child: provider.data != null &&
-                                          provider.data.icon != null
-                                      ? Image.network(
-                                          'https:${provider.data.icon}')
-                                      : const Placeholder(),
+                                  child: Image.network(
+                                      'https:${savedLocationProvider.savedLocations[index].icon}'),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Row(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      '24',
+                                      savedLocationProvider
+                                          .savedLocations[index].temp
+                                          .toString(),
                                       style: GoogleFonts.roboto(
                                         height: 0.8,
                                         fontSize: 48,
@@ -238,7 +221,7 @@ class _SavedLocationsState extends State<SavedLocations> {
                                     ),
                                   ],
                                 ),
-                                Spacer(),
+                                const Spacer(),
                               ],
                             ),
                           ],
@@ -250,12 +233,13 @@ class _SavedLocationsState extends State<SavedLocations> {
 
                 GestureDetector(
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const AddNewLocation()));
                   },
                   child: Container(
-                    margin: EdgeInsets.symmetric(vertical: 10),
-                    padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 15, horizontal: 20),
                     height: 60,
                     width: screenWidth,
                     decoration: BoxDecoration(
@@ -269,7 +253,7 @@ class _SavedLocationsState extends State<SavedLocations> {
                           Icons.add_circle_outline,
                           color: Colors.white,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -281,10 +265,13 @@ class _SavedLocationsState extends State<SavedLocations> {
                             color: Colors.white,
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(
+                  height: 20,
                 ),
               ],
             ),
