@@ -25,7 +25,7 @@ class _AddNewLocationState extends State<AddNewLocation> {
           ),
           content: SingleChildScrollView(
             child: SizedBox(
-              height: 220,
+              height: 150,
               width: 260,
               child: Column(
                 children: [
@@ -36,26 +36,20 @@ class _AddNewLocationState extends State<AddNewLocation> {
                         onTap: () {
                           Navigator.of(dialogContext).pop();
                         },
-                        child: Image.asset(
-                          'lib/assets/images/close.png',
-                          width: 40,
-                          height: 40,
-                          color: const Color.fromARGB(255, 35, 60, 135),
-                        ),
+                        child: const Icon(Icons.close),
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 10,
-                  ),
+                  const Spacer(),
                   Text(
                     "Please Enter City Name",
                     style: GoogleFonts.poppins(
-                      fontSize: 12,
+                      fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                     textAlign: TextAlign.center,
                   ),
+                  const Spacer(),
                 ],
               ),
             ),
