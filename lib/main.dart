@@ -4,6 +4,7 @@ import 'package:weather_app/pages/CitySelectPage.dart';
 import 'package:weather_app/provider/city_image_provider.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
+import 'package:weather_app/provider/search_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
 import 'package:weather_app/repositories/city_image_repository.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => SavedLocationProvider()),
         ChangeNotifierProvider(
             create: (context) => CityImageProvider(CityImageRepo())),
+        ChangeNotifierProvider(create: (context) => SearchProvider()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
