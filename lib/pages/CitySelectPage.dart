@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/HomePage.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
@@ -72,6 +73,10 @@ class _CitySelectionState extends State<CitySelection> {
                 height: AppBar().preferredSize.height,
               ),
               const Spacer(),
+              Lottie.asset('lib/assets/animations/city.json'),
+              const SizedBox(
+                height: 60,
+              ),
               TextField(
                 controller: cityController,
                 onChanged: (text) {
@@ -80,7 +85,7 @@ class _CitySelectionState extends State<CitySelection> {
                 decoration: InputDecoration(
                   prefixIcon: const Icon(
                     Icons.location_city,
-                    color: Color.fromARGB(112, 3, 20, 108),
+                    color: Color.fromARGB(150, 72, 89, 98),
                   ),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -88,13 +93,13 @@ class _CitySelectionState extends State<CitySelection> {
                   enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: Color.fromARGB(112, 3, 20, 108),
+                      color: Color.fromARGB(150, 72, 89, 98),
                       width: 2.0,
                     ),
                   ),
-                  labelText: 'Enter city name',
+                  labelText: 'Enter City Name',
                   labelStyle: const TextStyle(
-                    color: Color.fromARGB(112, 3, 20, 108),
+                    color: Color.fromARGB(150, 72, 89, 98),
                   ),
                 ),
               ),
@@ -114,7 +119,7 @@ class _CitySelectionState extends State<CitySelection> {
                   height: 55,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
-                    color: const Color.fromARGB(255, 130, 157, 237),
+                    color: const Color.fromARGB(255, 234, 148, 85),
                     boxShadow: const [
                       BoxShadow(
                         offset: Offset(0, 4.0),
