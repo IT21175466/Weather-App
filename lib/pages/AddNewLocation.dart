@@ -63,9 +63,6 @@ class _AddNewLocationState extends State<AddNewLocation> {
     final savedLocationProvider =
         Provider.of<SavedLocationProvider>(context, listen: false);
 
-    // final weatherProvider =
-    //     Provider.of<WeatherProvider>(context, listen: false);
-
     void addLocation() {
       savedLocationProvider.saveLocation(
           cityController.text,
