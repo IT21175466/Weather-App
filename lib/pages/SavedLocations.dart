@@ -73,14 +73,24 @@ class _SavedLocationsState extends State<SavedLocations> {
                           searchProvider.toggleSearch();
                         },
                         child: searchProvider.isSearching
-                            ? const Icon(
-                                Icons.close,
-                                color: Colors.white,
+                            ? GestureDetector(
+                                onTap: () {
+                                  searchProvider.searchText = '';
+                                  searchProvider.toggleSearch();
+                                  searchController.text = '';
+                                },
+                                child: const Icon(
+                                  Icons.close,
+                                  color: Colors.white,
+                                ),
                               )
                             : const Icon(
                                 Icons.search,
                                 color: Colors.white,
                               ),
+                      ),
+                      const SizedBox(
+                        width: 10,
                       ),
                       AnimatedContainer(
                         duration: const Duration(milliseconds: 300),
@@ -94,6 +104,9 @@ class _SavedLocationsState extends State<SavedLocations> {
                               filled: true,
                               fillColor: Colors.white,
                             ),
+                            onChanged: (value) {
+                              searchProvider.searchText = value;
+                            },
                           ),
                         ),
                       ),
@@ -109,7 +122,7 @@ class _SavedLocationsState extends State<SavedLocations> {
                     child: ListView.builder(
                       itemCount: savedLocationProvider.savedLocations.length,
                       itemBuilder: (context, index) {
-                        if (searchController.text.toString().isEmpty) {
+                        if (searchProvider.searchText.toString().isEmpty) {
                           return Slidable(
                             endActionPane: ActionPane(
                                 motion: const BehindMotion(),
@@ -283,8 +296,9 @@ class _SavedLocationsState extends State<SavedLocations> {
                               ),
                             ),
                           );
-                        } else if (searchController.text.toString().contains(
-                            savedLocationProvider
+                        } else if (searchProvider.searchText
+                            .toString()
+                            .contains(savedLocationProvider
                                 .savedLocations[index].city_name)) {
                           return Slidable(
                             endActionPane: ActionPane(
@@ -466,42 +480,45 @@ class _SavedLocationsState extends State<SavedLocations> {
                     ),
                   ),
 
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushReplacement(MaterialPageRoute(
-                          builder: (context) => const AddNewLocation()));
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 15, horizontal: 20),
-                      height: 60,
-                      width: screenWidth,
-                      decoration: BoxDecoration(
-                        color: const Color.fromARGB(155, 170, 165, 165),
-                        borderRadius: BorderRadius.circular(24),
-                      ),
-                      child: Row(
-                        children: [
-                          const Spacer(),
-                          const Icon(
-                            Icons.add_circle_outline,
-                            color: Colors.white,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Text(
-                            'Add new',
-                            style: GoogleFonts.poppins(
-                              height: 0.8,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w500,
+                  Visibility(
+                    visible: searchProvider.isSearching == false,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                            builder: (context) => const AddNewLocation()));
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.symmetric(vertical: 10),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 15, horizontal: 20),
+                        height: 60,
+                        width: screenWidth,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(155, 170, 165, 165),
+                          borderRadius: BorderRadius.circular(24),
+                        ),
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            const Icon(
+                              Icons.add_circle_outline,
                               color: Colors.white,
                             ),
-                          ),
-                          const Spacer(),
-                        ],
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              'Add new',
+                              style: GoogleFonts.poppins(
+                                height: 0.8,
+                                fontSize: 24,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
                       ),
                     ),
                   ),
