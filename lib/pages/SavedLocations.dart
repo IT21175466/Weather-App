@@ -54,63 +54,67 @@ class _SavedLocationsState extends State<SavedLocations> {
                   ),
 
                   //Search Bar
-                  Row(
-                    children: [
-                      Visibility(
-                        visible: searchProvider.isSearching == false,
-                        child: Text(
-                          'Saved Locations',
-                          style: GoogleFonts.poppins(
-                            fontSize: 20,
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
+                  SizedBox(
+                    width: screenWidth,
+                    child: Row(
+                      children: [
+                        Visibility(
+                          visible: searchProvider.isSearching == false,
+                          child: Text(
+                            'Saved Locations',
+                            style: GoogleFonts.poppins(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w400,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
-                      ),
-                      const Spacer(),
-                      GestureDetector(
-                        onTap: () {
-                          searchProvider.toggleSearch();
-                        },
-                        child: searchProvider.isSearching
-                            ? GestureDetector(
-                                onTap: () {
-                                  searchProvider.searchText = '';
-                                  searchProvider.toggleSearch();
-                                  searchController.text = '';
-                                },
-                                child: const Icon(
-                                  Icons.close,
+                        const Spacer(),
+                        GestureDetector(
+                          onTap: () {
+                            searchProvider.toggleSearch();
+                          },
+                          child: searchProvider.isSearching
+                              ? GestureDetector(
+                                  onTap: () {
+                                    searchProvider.searchText = '';
+                                    searchProvider.toggleSearch();
+                                    searchController.text = '';
+                                  },
+                                  child: const Icon(
+                                    Icons.close,
+                                    color: Colors.white,
+                                  ),
+                                )
+                              : const Icon(
+                                  Icons.search,
                                   color: Colors.white,
                                 ),
-                              )
-                            : const Icon(
-                                Icons.search,
-                                color: Colors.white,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        AnimatedContainer(
+                          duration: const Duration(milliseconds: 300),
+                          width:
+                              searchProvider.isSearching ? screenWidth / 3 : 0,
+                          child: Visibility(
+                            visible: searchProvider.isSearching,
+                            child: TextField(
+                              controller: searchController,
+                              decoration: const InputDecoration(
+                                hintText: 'Search...',
+                                filled: true,
+                                fillColor: Colors.white,
                               ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        width: searchProvider.isSearching ? screenWidth / 2 : 0,
-                        child: Visibility(
-                          visible: searchProvider.isSearching,
-                          child: TextField(
-                            controller: searchController,
-                            decoration: const InputDecoration(
-                              hintText: 'Search...',
-                              filled: true,
-                              fillColor: Colors.white,
+                              onChanged: (value) {
+                                searchProvider.searchText = value;
+                              },
                             ),
-                            onChanged: (value) {
-                              searchProvider.searchText = value;
-                            },
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
 
                   const SizedBox(
