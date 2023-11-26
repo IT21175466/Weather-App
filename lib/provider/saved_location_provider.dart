@@ -3,12 +3,28 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/model/saved_location_model.dart';
+import 'package:weather_app/repositories/weather_repository.dart';
 
 class SavedLocationProvider with ChangeNotifier {
   List<SavedLocation> savedLocations = [];
+  bool isLoaded = false;
+  var _repo = WeatherRepo();
+  var savedData;
 
   void initialState() {
     syncDataWithProvider();
+  }
+
+  info(String city) async {
+    try {
+      savedData = await _repo.getData(city);
+      isLoaded = true;
+
+      notifyListeners();
+      return savedData;
+    } catch (e) {
+      print(e);
+    }
   }
 
   void saveLocation(var cityName, var condition, var icon, var humidity,

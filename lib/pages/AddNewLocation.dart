@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/SavedLocations.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
-import 'package:weather_app/provider/weather_provider.dart';
 
 class AddNewLocation extends StatefulWidget {
   const AddNewLocation({super.key});
@@ -64,17 +63,17 @@ class _AddNewLocationState extends State<AddNewLocation> {
     final savedLocationProvider =
         Provider.of<SavedLocationProvider>(context, listen: false);
 
-    final weatherProvider =
-        Provider.of<WeatherProvider>(context, listen: false);
+    // final weatherProvider =
+    //     Provider.of<WeatherProvider>(context, listen: false);
 
     void addLocation() {
       savedLocationProvider.saveLocation(
           cityController.text,
-          weatherProvider.data.condition,
-          weatherProvider.data.icon,
-          weatherProvider.data.humidity,
-          weatherProvider.data.wind,
-          weatherProvider.data.temp);
+          savedLocationProvider.savedData.condition,
+          savedLocationProvider.savedData.icon,
+          savedLocationProvider.savedData.humidity,
+          savedLocationProvider.savedData.wind,
+          savedLocationProvider.savedData.temp);
     }
 
     return Scaffold(
@@ -117,7 +116,7 @@ class _AddNewLocationState extends State<AddNewLocation> {
                 if (cityController.text.isEmpty) {
                   validationDialog();
                 } else {
-                  weatherProvider
+                  savedLocationProvider
                       .info(cityController.text)
                       .then((dynamic result) {
                     addLocation();
