@@ -72,8 +72,7 @@ class _CitySelectionState extends State<CitySelection> {
               SizedBox(
                 height: AppBar().preferredSize.height,
               ),
-              const Spacer(),
-              Lottie.asset('lib/assets/animations/city.json'),
+              Expanded(child: Lottie.asset('lib/assets/animations/city.json')),
               const SizedBox(
                 height: 60,
               ),
@@ -141,7 +140,9 @@ class _CitySelectionState extends State<CitySelection> {
                   ),
                 ),
               ),
-              const Spacer(),
+              const SizedBox(
+                height: 60,
+              ),
             ],
           ),
         ),

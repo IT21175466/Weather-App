@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/pages/SavedLocations.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
@@ -81,7 +82,12 @@ class _AddNewLocationState extends State<AddNewLocation> {
             SizedBox(
               height: AppBar().preferredSize.height,
             ),
-            const Spacer(),
+            Expanded(
+                child:
+                    Lottie.asset('lib/assets/animations/save_location.json')),
+            const SizedBox(
+              height: 50,
+            ),
             TextField(
               controller: cityController,
               decoration: InputDecoration(
@@ -151,7 +157,9 @@ class _AddNewLocationState extends State<AddNewLocation> {
                 ),
               ),
             ),
-            const Spacer(),
+            const SizedBox(
+              height: 50,
+            ),
           ],
         ),
       ),
