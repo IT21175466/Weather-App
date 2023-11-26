@@ -15,6 +15,12 @@ class SavedLocationProvider with ChangeNotifier {
     syncDataWithProvider();
   }
 
+  void deleteLocation(SavedLocation location) {
+    savedLocations.remove(location);
+    updateSharedprefrences();
+    notifyListeners();
+  }
+
   info(String city) async {
     try {
       savedData = await _repo.getData(city);
