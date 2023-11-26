@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
         Provider.of<CityImageProvider>(context, listen: false);
     final provider = Provider.of<WeatherProvider>(context, listen: false);
     provider.isLoaded = false;
+    cityImageProvider.isImageLoaded = false;
 
     provider.info(cityProvider.enteredText);
     cityImageProvider.getCityImage(cityProvider.enteredText);
@@ -37,13 +38,18 @@ class _HomePageState extends State<HomePage> {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
+    String getFormattedDate() {
+      DateTime today = DateTime.now();
+      String formattedDate = DateFormat('MMMM d').format(today);
+      return formattedDate;
+    }
+
     return Scaffold(
       body: Consumer<CityImageProvider>(
         builder: (BuildContext context, CityImageProvider cityImageProvider,
                 Widget? child) =>
             Consumer<WeatherProvider>(
-          builder: (context, weather, child) => weather.isLoaded &&
-                  cityImageProvider.isImageLoaded
+          builder: (context, weather, child) => cityImageProvider.isImageLoaded
               ? Container(
                   height: screenHeight,
                   width: screenWidth,
@@ -122,7 +128,7 @@ class _HomePageState extends State<HomePage> {
 
                       //Date
                       Text(
-                        weather.data != null ? '${weather.data.name}' : '-',
+                        getFormattedDate(),
                         style: GoogleFonts.roboto(
                           fontSize: 40,
                           fontWeight: FontWeight.w500,
@@ -133,7 +139,7 @@ class _HomePageState extends State<HomePage> {
                       //Updated Date and Time
                       Text(
                         weather.data != null
-                            ? 'Updated ${DateFormat('dd/MM/yyyy hh:mma').format(weather.data.last_update ?? DateTime.now())}'
+                            ? 'Updated ${DateFormat('MM/dd/yyyy hh:mma').format(weather.data.last_update ?? DateTime.now())}'
                             : '-',
                         style: GoogleFonts.roboto(
                           fontSize: 16,

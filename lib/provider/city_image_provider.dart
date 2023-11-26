@@ -9,8 +9,6 @@ class CityImageProvider extends ChangeNotifier {
 
   CityImageProvider(this.cityImageRepo);
 
-  //CityImage? get city => _cityImage;
-
   Future<void> getCityImage(String cityName) async {
     try {
       final imageUrl = await cityImageRepo.getCityImage(cityName);
