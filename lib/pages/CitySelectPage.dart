@@ -106,7 +106,7 @@ class _CitySelectionState extends State<CitySelection> {
                   if (cityController.text.isEmpty) {
                     validationDialog();
                   } else {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) => const HomePage()));
                   }
                 },
