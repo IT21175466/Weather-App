@@ -3,7 +3,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/screens/SavedLocations.dart';
+import 'package:weather_app/pages/CitySelectPage.dart';
+import 'package:weather_app/pages/SavedLocations.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
 
@@ -66,18 +67,28 @@ class _HomePageState extends State<HomePage> {
                           const SizedBox(
                             width: 5,
                           ),
-                          Text(
-                            weather.data != null ? '${weather.data.name}' : '-',
-                            style: GoogleFonts.roboto(
-                              fontSize: 18,
-                              color: Colors.white,
-                              shadows: [
-                                Shadow(
-                                  color: Colors.black.withOpacity(0.25),
-                                  offset: const Offset(0, 4),
-                                  blurRadius: 4,
-                                ),
-                              ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const CitySelection()));
+                            },
+                            child: Text(
+                              weather.data != null
+                                  ? '${weather.data.name}'
+                                  : '-',
+                              style: GoogleFonts.roboto(
+                                fontSize: 18,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(
+                                    color: Colors.black.withOpacity(0.25),
+                                    offset: const Offset(0, 4),
+                                    blurRadius: 4,
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           const Spacer(),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/screens/AddNewLocation.dart';
+import 'package:weather_app/pages/AddNewLocation.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
 
 class SavedLocations extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/screens/HomePage.dart';
+import 'package:weather_app/pages/HomePage.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 
 class CitySelection extends StatefulWidget {

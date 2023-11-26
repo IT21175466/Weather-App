@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/screens/CitySelectPage.dart';
+import 'package:weather_app/pages/CitySelectPage.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
 import 'package:weather_app/provider/weather_provider.dart';
