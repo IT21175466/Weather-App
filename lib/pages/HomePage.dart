@@ -374,7 +374,7 @@ class _HomePageState extends State<HomePage> {
                       Container(
                         margin: const EdgeInsets.symmetric(horizontal: 20),
                         padding: const EdgeInsets.all(15),
-                        height: 150,
+                        height: 155,
                         decoration: BoxDecoration(
                           color: const Color.fromARGB(255, 83, 83, 83)
                               .withOpacity(0.6),
