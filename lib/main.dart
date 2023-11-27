@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:weather_app/pages/CitySelectPage.dart';
+import 'package:weather_app/pages/SplashScreen.dart';
 import 'package:weather_app/provider/city_image_provider.dart';
 import 'package:weather_app/provider/get_city_provider.dart';
 import 'package:weather_app/provider/saved_location_provider.dart';
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const CitySelection(),
+        home: const SplashScreen(),
       ),
     );
   }
